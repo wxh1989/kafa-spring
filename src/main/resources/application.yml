@@ -1,0 +1,23 @@
+server:
+  port: 9997
+spring:
+  application:
+    name: kafka-spring-client
+  kafka:
+    producer:
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 3
+
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: group-kafka-spring
+      enable-auto-commit: false
+      #每次抓500条
+      max-poll-records: 500
+    listener:
+      ack-mode: manual
+
+    bootstrap-servers: 192.168.0.99:9092,192.168.0.99:9093,192.168.0.99:9094
